@@ -1,11 +1,33 @@
 # QuantFlow Financial Suite - .gitignore
 
-# Python
+# === Python-related ===
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
-.Python
+*.manifest
+*.spec
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+conda/
+.conda/
+
+# Byte-compiled / DLL / C extensions
+*.pyc
+*.pyo
+*.pyd
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# === Build and packaging ===
 build/
 develop-eggs/
 dist/
@@ -18,20 +40,21 @@ parts/
 sdist/
 var/
 wheels/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
 MANIFEST
+target/
+.pybuilder/
 
-# Virtual environments
-venv/
-env/
-ENV/
-.venv/
-conda/
-.conda/
+# === Jupyter / IPython ===
+.ipynb_checkpoints/
+*.ipynb
+profile_default/
+ipython_config.py
 
-# IDE
+# === IDE / Editor ===
 .vscode/
 .idea/
 *.swp
@@ -39,23 +62,57 @@ conda/
 *~
 .spyderproject
 .spyproject
+.ropeproject
+.abstra/
 
-# Jupyter Notebooks
-.ipynb_checkpoints/
-*.ipynb
+# === Testing & Coverage ===
+.tox/
+.nox/
+.pytest_cache/
+.cache/
+cover/
+*.cover
+*.py,cover
+coverage.xml
+.hypothesis/
+htmlcov/
+.dmypy.json
+.mypy_cache/
+.pytype/
+.pyre/
 
-# Data files (keep structure, ignore data)
-data/raw/*.csv
-data/raw/*.xlsx
-data/raw/*.json
-data/processed/*.csv
-data/processed/*.xlsx
-data/processed/*.json
-data/manual/*.csv
-data/manual/*.xlsx
-data/manual/*.json
+# === Databases / Secrets ===
+*.db
+*.sqlite
+*.sqlite3
+.env
+.env.*
+secrets.*
+config/secrets.*
+config/production.yaml
+config/staging.yaml
+quantflow/config/prod_settings.py
+api_keys.txt
+credentials.json
+.pypirc
 
-# Keep directory structure but ignore contents
+# === OS / System Files ===
+.DS_Store
+.DS_Store?
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.AppleDouble
+.LSOverride
+
+# === Backup / Temp ===
+*.bak
+*.backup
+*.temp
+*.tmp
+
+# === Financial Project Specific ===
 data/raw/*
 !data/raw/.gitkeep
 data/processed/*
@@ -63,181 +120,54 @@ data/processed/*
 data/manual/*
 !data/manual/.gitkeep
 
-# Logs
-logs/*.log
-*.log
 logs/*
+*.log
 !logs/.gitkeep
 
-# API Keys and Environment Variables
-.env
-.env.local
-.env.production
-.env.staging
-secrets.yaml
-secrets.yml
-config/secrets.yaml
-config/secrets.yml
-api_keys.txt
-credentials.json
-
-# OS
-.DS_Store
-.DS_Store?
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# Excel temporary files
-~$*.xlsx
-~$*.xls
-~$*.xlsm
-*.tmp
-
-# Power BI files (if they contain sensitive data)
-*.pbix
-*.pbit
-dashboard/*.pbix
-dashboard/*.pbit
-
-# Outputs (generated reports)
-outputs/*.pdf
-outputs/*.xlsx
-outputs/*.png
-outputs/*.jpg
-outputs/*.jpeg
-outputs/*.docx
-outputs/*.pptx
 outputs/*
 !outputs/.gitkeep
 !outputs/README.md
 
-# Cache directories
-.cache/
-.pytest_cache/
-__pycache__/
-.mypy_cache/
-.tox/
-.coverage
-.coverage.*
-
-# Coverage reports
-htmlcov/
-.coverage
-coverage.xml
-*.cover
-.hypothesis/
-
-# Documentation builds
-docs/_build/
-site/
-
-# PyCharm
-.idea/
-
-# Spyder
-.spyderproject
-.spyproject
-
-# Rope
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Database files
-*.db
-*.sqlite
-*.sqlite3
-
-# Temporary files
-temp/
-tmp/
-*.temp
-*.tmp
-
-# Backup files
-*.bak
-*.backup
-*~
-
-# Configuration files with sensitive data
-config/production.yaml
-config/staging.yaml
-quantflow/config/prod_settings.py
-
-# Test outputs
-test_outputs/
-test_results/
-
-# MacOS
-.AppleDouble
-.LSOverride
-
-# Windows
-Thumbs.db
-ehthumbs.db
-Desktop.ini
-$RECYCLE.BIN/
-
-# Linux
-*~
-
-# Financial data exports (potentially sensitive)
 exports/
 reports/
 *.financial_data.json
 
-# Large model files (if you add ML models later)
-*.pkl
-*.joblib
-*.h5
-*.model
-
-# Node modules (if you add any frontend)
-node_modules/
-
-# Package lock files
-package-lock.json
-yarn.lock
-
-# Alteryx files (if you add them)
-*.yxmd
-*.yxwz
-alteryx_output/
-
-# R files (if you add R integration)
-.Rhistory
-.RData
-.Ruserdata
-
-# MATLAB files (if you add MATLAB integration)
-*.asv
-*.m~
-
-# Streamlit
-.streamlit/secrets.toml
-
-# Additional QuantFlow specific
-# Keep these directories but ignore their contents
 templates/populated/
 templates/output/
-
-# Ignore populated Excel templates with real data
 templates/*_populated.xlsx
 templates/*_filled.xlsx
 
-# Ignore any personal notes or documentation
 personal_notes/
 todo.txt
 NOTES.md
 
-# Ignore any custom company analysis files
 analysis/
 company_reports/
 valuation_reports/
+
+# === Other Tools ===
+*.pbix
+*.pbit
+dashboard/
+.streamlit/secrets.toml
+node_modules/
+package-lock.json
+yarn.lock
+*.yxmd
+*.yxwz
+alteryx_output/
+.Rhistory
+.RData
+.Ruserdata
+*.asv
+*.m~
+.ruff_cache/
+.cursorignore
+.cursorindexingignore
+.pdm.toml
+.pdm-python
+.pdm-build/
+__pypackages__/
+celerybeat-schedule
+celerybeat.pid
+cython_debug/
