@@ -1,0 +1,53 @@
+# QuantFlow Financial Suite - Dependencies
+
+# Core data manipulation
+pandas>=2.3.0
+numpy>=2.3.0
+
+# Financial data
+yfinance>=0.2.32
+pandas-datareader>=0.10.0  # Some versions may not yet support 3.13 fully
+quandl>=3.7.0  # May need testing on 3.13; consider alternatives
+
+# Web scraping
+beautifulsoup4>=4.13.0
+requests>=2.32.0
+selenium>=4.33.0
+
+# Excel integration
+openpyxl>=3.1.5
+xlsxwriter>=3.2.3
+
+# Database
+# sqlite3  <-- removed (it's part of Python's standard library)
+sqlalchemy>=2.0.30
+
+# Visualization
+matplotlib>=3.8.4
+seaborn>=0.13.2
+plotly>=5.22.0
+
+# Dashboard
+streamlit>=1.34.0
+dash>=2.17.0
+
+# Configuration
+pyyaml>=6.0.1
+python-dotenv>=1.0.1
+
+# Development
+jupyter>=1.0.0
+pytest>=8.2.1
+black>=24.3.0
+flake8>=7.0.0
+
+# Machine Learning (optional)
+scikit-learn>=1.4.2
+scipy>=1.13.0
+
+# Progress bars
+tqdm>=4.66.4
+
+# API clients
+alpha-vantage>=2.3.1
+iexfinance>=0.5.0  # May not be 100% tested on 3.13

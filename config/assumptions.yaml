@@ -1,0 +1,122 @@
+# QuantFlow Financial Suite - Model Assumptions
+# Based on Adobe DCF Model Structure
+
+# Market Data & Valuation
+market:
+  risk_free_rate: 0.043        # 10-Year Treasury
+  market_risk_premium: 0.065   # Historical equity premium
+  default_beta: 1.15           # Default beta for tech stocks
+  
+# DCF Model Parameters
+dcf:
+  projection_years: 5
+  terminal_growth_rate: 0.04   # Long-term GDP+ growth
+  
+  # Default growth assumptions (can be overridden per company)
+  revenue_growth_rates:
+    year_1: 0.12    # 12.0%
+    year_2: 0.105   # 10.5%
+    year_3: 0.09    # 9.0%
+    year_4: 0.075   # 7.5%
+    year_5: 0.06    # 6.0%
+  
+  # Margin assumptions (tech companies)
+  margins:
+    gross_margin: 0.875         # 87.5% - typical SaaS
+    rd_percent_revenue: 0.18    # 18% - tech innovation
+    sm_percent_revenue: 0.27    # 27% - sales & marketing
+    ga_percent_revenue: 0.075   # 7.5% - general admin
+    
+  # Cash flow assumptions
+  capex_percent_revenue: 0.023  # 2.3% - infrastructure
+  nwc_percent_growth: 0.08      # 8% - working capital needs
+  da_percent_revenue: 0.042     # 4.2% - depreciation
+  
+  # Tax
+  tax_rate: 0.21               # Normalized corporate tax rate
+
+# Company-Specific Overrides
+companies:
+  ADBE:  # Adobe
+    revenue_growth_rates:
+      year_1: 0.12
+      year_2: 0.105
+      year_3: 0.09
+      year_4: 0.075
+      year_5: 0.06
+    margins:
+      gross_margin: 0.875
+      rd_percent_revenue: 0.185
+      sm_percent_revenue: 0.275
+    beta: 1.15
+    
+  AAPL:  # Apple
+    revenue_growth_rates:
+      year_1: 0.08
+      year_2: 0.07
+      year_3: 0.06
+      year_4: 0.05
+      year_5: 0.04
+    margins:
+      gross_margin: 0.43
+      rd_percent_revenue: 0.06
+    beta: 1.25
+    
+  MSFT:  # Microsoft
+    revenue_growth_rates:
+      year_1: 0.15
+      year_2: 0.12
+      year_3: 0.10
+      year_4: 0.08
+      year_5: 0.06
+    margins:
+      gross_margin: 0.68
+      rd_percent_revenue: 0.13
+    beta: 0.90
+
+# Data Sources
+data_sources:
+  primary: "yfinance"
+  backup: ["alpha_vantage", "iex", "quandl"]
+  
+  # API configurations
+  alpha_vantage:
+    base_url: "https://www.alphavantage.co/query"
+    rate_limit: 5  # calls per minute
+    
+  iex:
+    base_url: "https://cloud.iexapis.com/stable"
+    rate_limit: 100
+
+# File paths and naming
+paths:
+  raw_data: "data/raw"
+  processed_data: "data/processed"
+  manual_data: "data/manual"
+  templates: "templates"
+  outputs: "outputs"
+  
+naming:
+  income_statement: "{ticker}_income_statement.csv"
+  balance_sheet: "{ticker}_balance_sheet.csv"
+  cashflow: "{ticker}_cashflow_statement.csv"
+  market_data: "{ticker}_market_data.csv"
+  dcf_model: "{ticker}_dcf_model.xlsx"
+
+# Dashboard settings
+dashboard:
+  default_tickers: ["ADBE", "AAPL", "MSFT", "GOOGL", "AMZN"]
+  refresh_interval: 3600  # seconds
+  cache_duration: 1800    # seconds
+  
+# Sensitivity Analysis
+sensitivity:
+  wacc_range: [0.09, 0.10, 0.11, 0.12, 0.13, 0.14, 0.15]
+  terminal_growth_range: [0.02, 0.025, 0.03, 0.035, 0.04, 0.045, 0.05]
+  revenue_growth_variance: 0.02  # +/- 2% variance for scenarios
+
+# Logging
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/quantflow.log"
